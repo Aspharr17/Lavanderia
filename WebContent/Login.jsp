@@ -19,7 +19,7 @@
 	<form id = "formularioLogin" action="Login.do">
 		<div class = "form-group">
 			<img src = "img/img1.jpg" alt="70" width="170"/>
-			<label>Inicia Sesión</label>
+			<h3>Inicia Sesión</h3>
 			
 		</div>
 		<div class="form-group">

@@ -31,19 +31,23 @@ public class Controlador extends HttpServlet {
 			int usuario = Integer.parseInt(request.getParameter("txtUser"));
 			String password = request.getParameter("txtPass");
 			Usuario usu = new Usuario(usuario,password);
+			//result debe tener solo un usuario
 			List<Usuario> result = usu.signIn();
 			if(result.isEmpty()) 
 			{
-				System.out.println("incorrecto");
 				request.getRequestDispatcher("Login.jsp").forward(request, response);
+				//FALTA MANDAR ALERTA
 				
 			}
 			else
 			{
-				//Abrir menu 
-				System.out.println("Id usuario: "+result.get(0).getId_usu());
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher("Menu.jsp").forward(request, response);
+				request.setAttribute("user", result.get(0));
 			}
+		}
+		else if(request.getServletPath().equalsIgnoreCase("/paginaLogIn.do"))
+		{
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
 		}
 	}
 
