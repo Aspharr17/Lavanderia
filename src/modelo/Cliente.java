@@ -13,6 +13,7 @@ public class Cliente {
 		this.nom_cl = nom_cl;
 		this.ape_cl = ape_cl;
 		this.tel_cl = tel_cl;
+		// Este es un comentario mio osea de payolis
 	}
 	public int getId_cl() {
 		return id_cl;
