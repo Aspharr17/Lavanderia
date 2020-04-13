@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Cliente;
 import modelo.Usuario;
 
 /**
@@ -48,6 +49,45 @@ public class Controlador extends HttpServlet {
 		else if(request.getServletPath().equalsIgnoreCase("/paginaLogIn.do"))
 		{
 			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		}
+		else if(request.getServletPath().equalsIgnoreCase("/insertarUsuario.do"))
+		{
+			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
+			String nom_cl = request.getParameter("nom_cl");
+			String ape_cl = request.getParameter("ape_cl");
+			String tel_cl = request.getParameter("tel_cl");
+			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
+			cliente.registrarCliente();
+		}
+		else if(request.getServletPath().equalsIgnoreCase("/mostrarClientes.do"))
+		{
+			Cliente cliente = new Cliente();
+			List<Cliente> listaClientes = cliente.buscarTodos();
+		}
+		else if(request.getServletPath().equalsIgnoreCase("/buscarCliente"))
+		{
+			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
+			String nom_cl = request.getParameter("nom_cl");
+			String ape_cl = request.getParameter("ape_cl");
+			String tel_cl = request.getParameter("tel_cl");
+			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
+			List<Cliente> listaClientes = cliente.buscarCliente(); 
+		}
+		else if(request.getServletPath().equalsIgnoreCase("/eliminarCliente.do"))
+		{
+			Cliente cliente = new Cliente();
+			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
+			cliente.setId_cl(id_cl);
+			cliente.eliminarCliente();
+		}
+		else if(request.getServletPath().equalsIgnoreCase("/editarrUsuario.do"))
+		{
+			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
+			String nom_cl = request.getParameter("nom_cl");
+			String ape_cl = request.getParameter("ape_cl");
+			String tel_cl = request.getParameter("tel_cl");
+			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
+			cliente.editarCliente();
 		}
 	}
 

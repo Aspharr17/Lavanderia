@@ -20,7 +20,6 @@ public class Pedido
 		//this.date = date;
 	}
 
-
 	public int getId() {
 		return id;
 	}
