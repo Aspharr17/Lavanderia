@@ -1,17 +1,32 @@
+window.onload=generarEvento;
+
 function validation()
 {
+	var formularioLogin = document.getElementById("formularioLogin");
 	var user = document.getElementById("txtUser").value;
 	var pass = document.getElementById("txtPass").value;
 	if(user!="" && pass!="")
 	{
-		document.forms[0].action = "Controlador?user="+user+"&pass="+pass;
-        document.forms[0].method = "post";
-        document.forms[0].submit();
+
+      formularioLogin.submit();
 		
 	}
 	else
 	{
 		alert("Faltan datos");
+		return false;
 	}
+	
 
 }
+
+function generarEvento()
+{
+	var formularioLogin = document.getElementById("formularioLogin");
+	formularioLogin.onsubmit = function(){
+		
+		validation();
+		return false;
+	}
+}
+

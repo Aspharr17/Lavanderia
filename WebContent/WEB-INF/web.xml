@@ -18,7 +18,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Controlador</servlet-name>
-    <url-pattern>/Controlador.do</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
  
 </web-app>

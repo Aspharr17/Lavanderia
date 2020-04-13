@@ -26,23 +26,24 @@ public class Controlador extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println(request.getServletPath());
-		int usuario = Integer.parseInt(request.getParameter("user"));
-		String password = request.getParameter("pass");
-		Usuario usu = new Usuario(usuario,password);
-		List<Usuario> result = usu.signIn();
-		if(result.isEmpty()) 
+		if(request.getServletPath().equalsIgnoreCase("/Login.do"))
 		{
-			System.out.println("incorrecto");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
-			
-		}
-		else
-		{
-			//Abrir menu 
-			System.out.println("Id usuario: "+usu.getId_usu());
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			int usuario = Integer.parseInt(request.getParameter("txtUser"));
+			String password = request.getParameter("txtPass");
+			Usuario usu = new Usuario(usuario,password);
+			List<Usuario> result = usu.signIn();
+			if(result.isEmpty()) 
+			{
+				System.out.println("incorrecto");
+				request.getRequestDispatcher("Login.jsp").forward(request, response);
+				
+			}
+			else
+			{
+				//Abrir menu 
+				System.out.println("Id usuario: "+result.get(0).getId_usu());
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
 		}
 	}
 

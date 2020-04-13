@@ -16,7 +16,7 @@
 	<div class = "container mt-4 col-lg-4">
 	<div class = "card">
 	<div class = "card-body text-center">
-	<form action="Controlador" method = "post">
+	<form id = "formularioLogin" action="Login.do">
 		<div class = "form-group">
 			<img src = "img/img1.jpg" alt="70" width="170"/>
 			<label>Inicia Sesión</label>
@@ -24,13 +24,13 @@
 		</div>
 		<div class="form-group">
 			<label>Usuario</label>
-			<input type="text" id = "txtUser" class = "form-control">
+			<input type="text" id = "txtUser" name="txtUser" class = "form-control">
 		</div>
 		<div class="form-group">
 			<label>Contraseña</label>
-			<input type="password" id = "txtPass" class = "form-control">
+			<input type="password" id = "txtPass" name="txtPass" class = "form-control">
 		</div>
-		<input type = "submit"  class= "btn btn-primary btn-block" onclick = "validation();"> 
+		<input type = "submit"  class= "btn btn-primary btn-block" > 
 	</form>
 	</div>
 	</div>
