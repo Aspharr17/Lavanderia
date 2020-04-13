@@ -36,13 +36,13 @@
         <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="Menu.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="#">Servicios</a>
+        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaServicios.do"  target ="myFrame">Servicios</a>
       </li>
        <li class="nav-item">
-        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="#">Pedido</a>
+        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaPedidos.do"  target ="myFrame">Pedido</a>
       </li>
       <li class="nav-item">
-        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="#">Clientes</a>
+        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaClientes.do" target ="myFrame">Clientes</a>
       </li>
       <li class="nav-item">
         <a style ="margin-right: 5px;" class="btn btn-danger" href="#">Nuevo Pedido</a>
@@ -70,8 +70,14 @@
 	</li>
    </ul>
   </div>
-
 </nav>
 
+<div style = "height: 595px;">
+	<iframe name = "myFrame "style = " height: 100%;
+  width:  100%;">
+	
+	
+	</iframe>
+</div>
 </body>
 </html>

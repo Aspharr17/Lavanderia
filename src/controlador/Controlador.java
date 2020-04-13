@@ -27,7 +27,31 @@ public class Controlador extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if(request.getServletPath().equalsIgnoreCase("/Login.do"))
+		String path = request.getServletPath();
+		System.out.println(path);
+		
+
+		if(path.equalsIgnoreCase("/paginaLogIn.do"))
+		{
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		}
+		else if(path.equalsIgnoreCase("/paginaClientes.do"))
+		{
+			
+			Cliente cliente = new Cliente();
+			List<Cliente> listaClientes = cliente.buscarTodos();
+			
+			request.getRequestDispatcher(".jsp").forward(request, response);
+		}
+		else if(path.equalsIgnoreCase("/paginaServicios.do"))
+		{
+				
+		}
+		else if(path.equalsIgnoreCase("/paginaPedidos.do"))
+		{
+			
+		}
+		else if(path.equalsIgnoreCase("/Login.do"))
 		{
 			int usuario = Integer.parseInt(request.getParameter("txtUser"));
 			String password = request.getParameter("txtPass");
@@ -46,11 +70,7 @@ public class Controlador extends HttpServlet {
 				request.setAttribute("user", result.get(0));
 			}
 		}
-		else if(request.getServletPath().equalsIgnoreCase("/paginaLogIn.do"))
-		{
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
-		}
-		else if(request.getServletPath().equalsIgnoreCase("/insertarUsuario.do"))
+		else if(path.equalsIgnoreCase("/insertarUsuario.do"))
 		{
 			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
 			String nom_cl = request.getParameter("nom_cl");
@@ -59,12 +79,8 @@ public class Controlador extends HttpServlet {
 			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
 			cliente.registrarCliente();
 		}
-		else if(request.getServletPath().equalsIgnoreCase("/mostrarClientes.do"))
-		{
-			Cliente cliente = new Cliente();
-			List<Cliente> listaClientes = cliente.buscarTodos();
-		}
-		else if(request.getServletPath().equalsIgnoreCase("/buscarCliente"))
+
+		else if(path.equalsIgnoreCase("/buscarCliente"))
 		{
 			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
 			String nom_cl = request.getParameter("nom_cl");
@@ -73,14 +89,14 @@ public class Controlador extends HttpServlet {
 			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
 			List<Cliente> listaClientes = cliente.buscarCliente(); 
 		}
-		else if(request.getServletPath().equalsIgnoreCase("/eliminarCliente.do"))
+		else if(path.equalsIgnoreCase("/eliminarCliente.do"))
 		{
 			Cliente cliente = new Cliente();
 			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
 			cliente.setId_cl(id_cl);
 			cliente.eliminarCliente();
 		}
-		else if(request.getServletPath().equalsIgnoreCase("/editarrUsuario.do"))
+		else if(path.equalsIgnoreCase("/editarUsuario.do"))
 		{
 			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
 			String nom_cl = request.getParameter("nom_cl");
