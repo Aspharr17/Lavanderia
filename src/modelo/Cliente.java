@@ -15,6 +15,14 @@ public class Cliente {
 		this.tel_cl = tel_cl;
 		// Este es un comentario mio osea de payolis
 	}
+	
+	public Cliente(String nom_cl, String ape_cl, String tel_cl) {
+		super();
+		this.nom_cl = nom_cl;
+		this.ape_cl = ape_cl;
+		this.tel_cl = tel_cl;
+	}
+
 	public int getId_cl() {
 		return id_cl;
 	}
@@ -46,8 +54,8 @@ public class Cliente {
 	
 	public void registrarCliente()
 	{
-		String consultaSQL = "INSERT INTO clientes(id_cl,nom_cl,ape_cl,tel_cl) VALUES";
-		consultaSQL +="("+id_cl+", '"+nom_cl+"', '"+ape_cl+"', '"+tel_cl+"' )";
+		String consultaSQL = "INSERT INTO clientes(nom_cl,ape_cl,tel_cl) VALUES";
+		consultaSQL +="('"+nom_cl+"', '"+ape_cl+"', '"+tel_cl+"' )";
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		helper.modificarRegistro(consultaSQL);
 	}
@@ -58,10 +66,10 @@ public class Cliente {
 		List<Cliente> listaClientes = helper.seleccionarRegistros(consultaSQL, Cliente.class);
 		return listaClientes;
 	}
-	public List<Cliente> buscarCliente()
+	public List<Cliente> buscarCliente(String info_cl)
 	{
-		String consultaSQL = "SELECT * FROM clientes WHERE id_cl ="+id_cl+
-							" OR nom_cl ='"+nom_cl+"' OR ape_cl = '"+ape_cl+"' OR tel_cl ='"+tel_cl+"'";
+		String consultaSQL = "SELECT * FROM clientes WHERE id_cl = '"+info_cl+
+							"' OR nom_cl ='"+info_cl+"' OR ape_cl = '"+info_cl+"' OR tel_cl ='"+info_cl+"'";
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		List<Cliente> cliente = helper.seleccionarRegistros(consultaSQL,Cliente.class);
 		return cliente;
@@ -72,12 +80,13 @@ public class Cliente {
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		helper.modificarRegistro(consultaSQL);
 	}
-	public void editarCliente()
+	public List<Cliente> editarCliente()
 	{
 		String consultaSQL = "UPDATE clientes SET nom_cl='"+nom_cl+"' , ape_cl = '"+ape_cl+"', tel_cl = '"+tel_cl+
 							"' WHERE id_cl= "+id_cl;
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		helper.modificarRegistro(consultaSQL);
+		return buscarTodos();
 	}
 	
 }

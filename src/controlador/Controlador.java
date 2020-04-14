@@ -28,9 +28,9 @@ public class Controlador extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String path = request.getServletPath();
-		System.out.println(path);
+		//System.out.println(path);
 		
-
+		//--------------------Navegación----------------
 		if(path.equalsIgnoreCase("/paginaLogIn.do"))
 		{
 			request.getRequestDispatcher("Login.jsp").forward(request, response);
@@ -40,8 +40,9 @@ public class Controlador extends HttpServlet {
 			
 			Cliente cliente = new Cliente();
 			List<Cliente> listaClientes = cliente.buscarTodos();
+			request.setAttribute("listaClientes", listaClientes);
+			request.getRequestDispatcher("InsertarCliente.jsp").forward(request, response);
 			
-			request.getRequestDispatcher(".jsp").forward(request, response);
 		}
 		else if(path.equalsIgnoreCase("/paginaServicios.do"))
 		{
@@ -70,40 +71,65 @@ public class Controlador extends HttpServlet {
 				request.setAttribute("user", result.get(0));
 			}
 		}
-		else if(path.equalsIgnoreCase("/insertarUsuario.do"))
+		//----------------------------CRUD Cliente------------------------------------
+		else if(path.equalsIgnoreCase("/insertarCliente.do"))
 		{
-			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
+			//int id_cl = Integer.parseInt(request.getParameter("id_cl"));
 			String nom_cl = request.getParameter("nom_cl");
 			String ape_cl = request.getParameter("ape_cl");
 			String tel_cl = request.getParameter("tel_cl");
-			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
-			cliente.registrarCliente();
+			Cliente cliente = new Cliente(nom_cl,ape_cl,tel_cl);
+			//cliente.registrarCliente();
+			List<Cliente> listaClientes = cliente.buscarTodos();
+			request.setAttribute("listaClientes", listaClientes);
+			request.getRequestDispatcher("InsertarCliente.jsp").forward(request, response);
 		}
 
-		else if(path.equalsIgnoreCase("/buscarCliente"))
+		else if(path.equalsIgnoreCase("/buscarCliente.do"))
 		{
-			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
-			String nom_cl = request.getParameter("nom_cl");
-			String ape_cl = request.getParameter("ape_cl");
-			String tel_cl = request.getParameter("tel_cl");
-			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
-			List<Cliente> listaClientes = cliente.buscarCliente(); 
+			String info_cl = request.getParameter("info_cl");
+			Cliente cliente = new Cliente();
+			List<Cliente> clienteBuscado = cliente.buscarCliente(info_cl); 
+			request.setAttribute("clienteBuscado", clienteBuscado);
+			List<Cliente> listaClientes = cliente.buscarTodos();
+			request.setAttribute("listaClientes", listaClientes);
+			request.getRequestDispatcher("InsertarCliente.jsp").forward(request, response);
+
 		}
 		else if(path.equalsIgnoreCase("/eliminarCliente.do"))
 		{
 			Cliente cliente = new Cliente();
 			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
-			cliente.setId_cl(id_cl);
-			cliente.eliminarCliente();
+			System.out.println(id_cl);
+			//cliente.setId_cl(id_cl);
+			//cliente.eliminarCliente();
+			List<Cliente> listaClientes = cliente.buscarTodos();
+			request.setAttribute("listaClientes", listaClientes);
+			request.getRequestDispatcher("InsertarCliente.jsp").forward(request, response);
 		}
-		else if(path.equalsIgnoreCase("/editarUsuario.do"))
+		else if(path.equalsIgnoreCase("/paginaEditarCliente.do"))
+		{
+			String id_cl = request.getParameter("id_cl");
+			String nom_cl = request.getParameter("nom_cl");
+			String ape_cl = request.getParameter("ape_cl");
+			String tel_cl = request.getParameter("tel_cl");
+			request.setAttribute("id_cl", id_cl);
+			request.setAttribute("nom_cl", nom_cl);
+			request.setAttribute("ape_cl", ape_cl);
+			request.setAttribute("tel_cl", tel_cl);
+			request.getRequestDispatcher("EditarCliente.jsp").forward(request, response);
+		}
+		else if(path.equalsIgnoreCase("/editarCliente.do"))
 		{
 			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
 			String nom_cl = request.getParameter("nom_cl");
 			String ape_cl = request.getParameter("ape_cl");
 			String tel_cl = request.getParameter("tel_cl");
 			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
-			cliente.editarCliente();
+			List<Cliente> listaClientes= cliente.editarCliente();
+			request.setAttribute("listaClientes", listaClientes);
+			request.getRequestDispatcher("InsertarCliente.jsp").forward(request, response);
+
 		}
 	}
 

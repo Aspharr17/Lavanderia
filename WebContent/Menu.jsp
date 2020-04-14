@@ -42,7 +42,7 @@
         <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaPedidos.do"  target ="myFrame">Pedido</a>
       </li>
       <li class="nav-item">
-        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaClientes.do" target ="myFrame">Clientes</a>
+        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaClientes.do" target="iframe_a">Clientes</a>
       </li>
       <li class="nav-item">
         <a style ="margin-right: 5px;" class="btn btn-danger" href="#">Nuevo Pedido</a>
@@ -72,9 +72,8 @@
   </div>
 </nav>
 
-<div style = "height: 595px;">
-	<iframe name = "myFrame "style = " height: 100%;
-  width:  100%;">
+<div style = "height: 590px;">
+	<iframe height="100%" width="100%" name="iframe_a">
 	
 	
 	</iframe>
