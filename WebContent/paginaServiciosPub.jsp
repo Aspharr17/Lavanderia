@@ -19,14 +19,26 @@
  <fieldset>
 	<div class="d-flex" >	
 		<div class="table">
+		<%
+		List<Servicio> listaServicios =(List<Servicio>)request.getAttribute("listaServicios");
+		pageContext.setAttribute("listaServicios",listaServicios);
+		%>
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Cantidad</th>
-					<th>Nombre</th>
-					<th>Precio</th>
+					<th>Servicio</th>
+					<th>Costo</th>
+					<th>Medida</th>
 				</tr>
 			</thead>
+		<c:forEach var="servicio" items ="${listaServicios}">
+		<tr>
+		<td><c:out value="${servicio.getNom_ser()}"></c:out></td>
+		<td><c:out value="${servicio.getCost_ser()}"></c:out></td>
+		<td><c:out value="${servicio.getMed_ser()}"></c:out></td>
+		</tr>
+		</c:forEach>	
+				
 		</table>
 		</div>
 	</div>

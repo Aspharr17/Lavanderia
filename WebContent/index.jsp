@@ -29,7 +29,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         <a style ="margin-right: 5px;" class="btn btn-outline-light" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a style ="margin-right: 5px;" class="btn btn-outline-light" href="#">Servicios</a>
+        <a style ="margin-right: 5px;" class="btn btn-outline-light" href="paginaServiciosPub.do" target ="iframe_b">Servicios</a>
       </li>
       <li class="nav-item dropdown">
 
@@ -57,7 +57,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
   </div>
 </nav>
 <div style ="height: 590px;">
-<iframe id = "Frame" name = "Frame" style="height: 100%; width:100%;">
+<iframe id = "iframe_b" name = "iframe_b" style="height: 100%; width:100%;">
 
 </iframe>
 </div>

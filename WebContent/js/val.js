@@ -80,17 +80,17 @@ function validacionEditarCliente()
     
 }
 
-function validacionEditarServicios()
+function validacionInsertarServicios()
 {       
-	var id_ser = document.getElementById("id_ser").value;
     var nom_ser = document.getElementById("nom_ser").value;
     var cost_ser = document.getElementById("cost_ser").value;
-    var editarServicios = document.getElementById("editarServicios");
-   	if(id_ser != "" && nom_ser !="" && cost_ser !="")
+    var med_ser = document.getElementById("med_ser").value;
+    var formularioInsertarServicio = document.getElementById("formularioInsertarServicio");
+   	if(nom_ser !="" && cost_ser !="" && med_ser !="")
     {
-
-    		editarServicios.action = "EditarServicios.do";
-    		editarServicios.submit();
+   		alert("Agregado");
+   		formularioInsertarServicio.action = "insertarServicio.do";
+   		formularioInsertarServicio.submit();
     
     }
     else

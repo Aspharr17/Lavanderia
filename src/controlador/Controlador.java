@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Cliente;
+import modelo.Servicio;
 import modelo.Usuario;
 
 /**
@@ -46,7 +47,25 @@ public class Controlador extends HttpServlet {
 		}
 		else if(path.equalsIgnoreCase("/paginaServicios.do"))
 		{
-				
+			Servicio servicio = new Servicio();
+			List<Servicio> listaServicios = servicio.buscarTodos();
+			request.setAttribute("listaServicios",listaServicios);
+			request.getRequestDispatcher("pagServicios.jsp").forward(request, response);
+
+		}
+		else if(path.equalsIgnoreCase("/paginaServiciosPub.do"))
+		{
+			Servicio servicio = new Servicio();
+			List<Servicio> listaServicios = servicio.buscarTodos();
+			request.setAttribute("listaServicios",listaServicios);
+			request.getRequestDispatcher("paginaServiciosPub.jsp").forward(request, response);
+
+		}
+		else if(path.equalsIgnoreCase("/paginaEditarServicio.do"))
+		{
+
+			request.getRequestDispatcher("editarServicio.jsp").forward(request, response);
+
 		}
 		else if(path.equalsIgnoreCase("/paginaPedidos.do"))
 		{
@@ -79,7 +98,7 @@ public class Controlador extends HttpServlet {
 			String ape_cl = request.getParameter("ape_cl");
 			String tel_cl = request.getParameter("tel_cl");
 			Cliente cliente = new Cliente(nom_cl,ape_cl,tel_cl);
-			//cliente.registrarCliente();
+			//cliente.registrar();
 			List<Cliente> listaClientes = cliente.buscarTodos();
 			request.setAttribute("listaClientes", listaClientes);
 			request.getRequestDispatcher("InsertarCliente.jsp").forward(request, response);
@@ -89,7 +108,7 @@ public class Controlador extends HttpServlet {
 		{
 			String info_cl = request.getParameter("info_cl");
 			Cliente cliente = new Cliente();
-			List<Cliente> clienteBuscado = cliente.buscarCliente(info_cl); 
+			List<Cliente> clienteBuscado = cliente.buscar(info_cl); 
 			request.setAttribute("clienteBuscado", clienteBuscado);
 			List<Cliente> listaClientes = cliente.buscarTodos();
 			request.setAttribute("listaClientes", listaClientes);
@@ -102,7 +121,7 @@ public class Controlador extends HttpServlet {
 			int id_cl = Integer.parseInt(request.getParameter("id_cl"));
 			System.out.println(id_cl);
 			//cliente.setId_cl(id_cl);
-			//cliente.eliminarCliente();
+			//cliente.eliminar();
 			List<Cliente> listaClientes = cliente.buscarTodos();
 			request.setAttribute("listaClientes", listaClientes);
 			request.getRequestDispatcher("InsertarCliente.jsp").forward(request, response);
@@ -126,10 +145,31 @@ public class Controlador extends HttpServlet {
 			String ape_cl = request.getParameter("ape_cl");
 			String tel_cl = request.getParameter("tel_cl");
 			Cliente cliente = new Cliente(id_cl,nom_cl,ape_cl,tel_cl);
-			List<Cliente> listaClientes= cliente.editarCliente();
+			List<Cliente> listaClientes= cliente.editar();
 			request.setAttribute("listaClientes", listaClientes);
 			request.getRequestDispatcher("InsertarCliente.jsp").forward(request, response);
 
+		}
+		//---------------------CRUD SERVICIOS------------------
+		else if(path.equalsIgnoreCase("/insertarServicio.do")){
+			String nom_ser = request.getParameter("nom_ser");
+			float cost_ser = Float.parseFloat(request.getParameter("cost_ser"));
+			String med_ser = request.getParameter("med_ser");
+			Servicio servicio = new Servicio(nom_ser,cost_ser,med_ser);
+			List<Servicio> listaServicios = servicio.registrar();
+			request.setAttribute("listaServicios",listaServicios);
+			request.getRequestDispatcher("pagServicios.jsp").forward(request, response);
+		}
+		else if(path.equalsIgnoreCase("/eliminarServicio.do"))
+		{
+			Servicio servicio = new Servicio();
+			int id_ser = Integer.parseInt(request.getParameter("id_ser"));
+			System.out.println(id_ser);
+			servicio.setId_ser(id_ser);
+			servicio.eliminar();
+			List<Servicio> listaServicios = servicio.eliminar();
+			request.setAttribute("listaServicios", listaServicios);
+			request.getRequestDispatcher("pagServicios.jsp").forward(request, response);
 		}
 	}
 

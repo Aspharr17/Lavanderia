@@ -52,7 +52,7 @@ public class Cliente {
 	}
 	
 	
-	public void registrarCliente()
+	public void registrar()
 	{
 		String consultaSQL = "INSERT INTO clientes(nom_cl,ape_cl,tel_cl) VALUES";
 		consultaSQL +="('"+nom_cl+"', '"+ape_cl+"', '"+tel_cl+"' )";
@@ -66,7 +66,7 @@ public class Cliente {
 		List<Cliente> listaClientes = helper.seleccionarRegistros(consultaSQL, Cliente.class);
 		return listaClientes;
 	}
-	public List<Cliente> buscarCliente(String info_cl)
+	public List<Cliente> buscar(String info_cl)
 	{
 		String consultaSQL = "SELECT * FROM clientes WHERE id_cl = '"+info_cl+
 							"' OR nom_cl ='"+info_cl+"' OR ape_cl = '"+info_cl+"' OR tel_cl ='"+info_cl+"'";
@@ -74,13 +74,13 @@ public class Cliente {
 		List<Cliente> cliente = helper.seleccionarRegistros(consultaSQL,Cliente.class);
 		return cliente;
 	}
-	public void eliminarCliente()
+	public void eliminar()
 	{
 		String consultaSQL = "DELETE FROM clientes WHERE id_cl = "+id_cl;
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		helper.modificarRegistro(consultaSQL);
 	}
-	public List<Cliente> editarCliente()
+	public List<Cliente> editar()
 	{
 		String consultaSQL = "UPDATE clientes SET nom_cl='"+nom_cl+"' , ape_cl = '"+ape_cl+"', tel_cl = '"+tel_cl+
 							"' WHERE id_cl= "+id_cl;

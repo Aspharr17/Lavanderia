@@ -21,47 +21,47 @@
 		<div class="card col-sm-4" >
 			<div class="card-body"name = "Insertar">
 			<!-- action="insertarCliente.do" -->
-			<h5 class = "card-body text-center" >Guardar Cliente</h5>
-			 <form id = "formularioInsertarCliente" >
+			<h5 class = "card-body text-center" >Servicios</h5>
+			 <form id = "formularioInsertarServicio" >
 				 <div classs="form-group">
 				 <label> Nombre </label>
-				 <input type="text" id = "nom_cl" name="nom_cl" class="form-control">
+				 <input type="text" id = "nom_ser" name="nom_ser" class="form-control">
 				 </div>
 				 <div classs="form-group">
-				 <label> Apellido </label>
-				 <input type="text" id = "ape_cl" name="ape_cl" class="form-control">
+				 <label> Costo </label>
+				 <input type="text" id = "cost_ser" name="cost_ser" class="form-control">
 				 </div>
 				 <div classs="form-group">
-				 <label> Telefono </label>
-				 <input type="text" name="tel_cl" id = "tel_cl" class="form-control">
+				 <label> Medida </label>
+				 <input type="text" name="med_ser" id = "med_ser" class="form-control">
 				 </div>
-				 <input type="submit"  class="btn btn-info" onclick="validacionIngresarCliente()"/>
+				 <input type="submit"  class="btn btn-info" onclick="validacionInsertarServicios()"/>
 			 </form>
 			</div>
 		</div>
 		<div class="table">
 		<%
-		List<Cliente> listaClientes =(List<Cliente>)request.getAttribute("listaClientes");
-		pageContext.setAttribute("listaClientes",listaClientes);
+		List<Servicio> listaServicios =(List<Servicio>)request.getAttribute("listaServicios");
+		pageContext.setAttribute("listaServicios",listaServicios);
 		%>
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Nombres</th>
-					<th>Apellidos</th>
-					<th>Telefonos</th>
+					<th>Servicio</th>
+					<th>Costo</th>
+					<th>Medida</th>
 				</tr>
 			</thead>
-		<c:forEach var="cliente" items ="${listaClientes}">
+		<c:forEach var="servicio" items ="${listaServicios}">
 		<tr>
-		<td><c:out value="${cliente.getId_cl()}"></c:out></td>
-		<td><c:out value="${cliente.getNom_cl()}"></c:out></td>
-		<td><c:out value="${cliente.getApe_cl()}"></c:out></td>
-		<td><c:out value="${cliente.getTel_cl()}"></c:out></td>
-		<td><a class="btn btn-danger" href="eliminarCliente.do?id_cl=${cliente.getId_cl()}">Eliminar</a></td>
-		<td><a class="btn btn-warning" href="paginaeditarCliente.do?id_cl=${cliente.getId_cl()}
-				&nom_cl=${cliente.getNom_cl()}&ape_cl=${cliente.getApe_cl()}&tel_cl=${cliente.getTel_cl()}">Editar</a></td>
+		<td><c:out value="${servicio.getId_ser()}"></c:out></td>
+		<td><c:out value="${servicio.getNom_ser()}"></c:out></td>
+		<td><c:out value="${servicio.getCost_ser()}"></c:out></td>
+		<td><c:out value="${servicio.getMed_ser()}"></c:out></td>
+		<td><a class="btn btn-danger" href="eliminarServicio.do?id_ser=${servicio.getId_ser()}">Eliminar</a></td>
+		<td><a class="btn btn-warning" href="paginaEditarServicio.do?id_ser=${servicio.getId_ser()}
+				&nom_ser=${servicio.getNom_ser()}&cost_ser=${servicio.getCost_ser()}&med_ser=${servicio.getMed_ser()}">Editar</a></td>
 			
 		</tr>
 		</c:forEach>	

@@ -36,10 +36,10 @@
         <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="Menu.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaServicios.do"  target ="myFrame">Servicios</a>
+        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaServicios.do"  target ="iframe_a">Servicios</a>
       </li>
        <li class="nav-item">
-        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaPedidos.do"  target ="myFrame">Pedido</a>
+        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaPedidos.do"  target ="myFrame">Pedidos</a>
       </li>
       <li class="nav-item">
         <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaClientes.do" target="iframe_a">Clientes</a>
