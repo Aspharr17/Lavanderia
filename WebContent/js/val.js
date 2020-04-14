@@ -80,4 +80,25 @@ function validacionEditarCliente()
     
 }
 
+function validacionEditarServicios()
+{       
+	var id_ser = document.getElementById("id_ser").value;
+    var nom_ser = document.getElementById("nom_ser").value;
+    var cost_ser = document.getElementById("cost_ser").value;
+    var editarServicios = document.getElementById("editarServicios");
+   	if(id_ser != "" && nom_ser !="" && cost_ser !="")
+    {
+
+    		editarServicios.action = "EditarServicios.do";
+    		editarServicios.submit();
+    
+    }
+    else
+    {
+    	alert("Faltan datos");
+    	return false;
+    }
+    
+}
+
 
