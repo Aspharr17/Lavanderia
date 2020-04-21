@@ -8,6 +8,8 @@
 	<meta charset="ISO-8859-1">
 	<title>Lavamas</title>
 	<link rel="stylesheet" type="text/css" href="styles/styles.css"/>
+	<script src ="js/val.js" type ="text/javascript"></script>
+	
 	<!-- Bootstrap-->
 	<link rel="stylesheet" 
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -23,7 +25,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-success text-white">
-  <a class="navbar-brand text-white" href="Menu.jsp">Lavamas</a>
+  <a class="navbar-brand text-white"  href="home.do" target = "iframe_a">Lavamas</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" 
   	data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
   	aria-expanded="false" aria-label="Toggle navigation">
@@ -33,26 +35,26 @@
   <div class="collapse navbar-collapse " id="navbarSupportedContent" >
     <ul class="navbar-nav mr-auto ">
       <li class="nav-item active">
-        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="Menu.jsp">Home <span class="sr-only">(current)</span></a>
+        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="home.do" target = "iframe_a">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaServicios.do"  target ="iframe_a">Servicios</a>
       </li>
        <li class="nav-item">
-        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaPedidos.do"  target ="myFrame">Pedidos</a>
+        <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaPedidos.do"  target ="iframe_a">Pedidos</a>
       </li>
       <li class="nav-item">
         <a style ="margin-right: 5px; border: none;" class="btn btn-outline-light" href="paginaClientes.do" target="iframe_a">Clientes</a>
       </li>
       <li class="nav-item">
-        <a style ="margin-right: 5px;" class="btn btn-danger" href="#">Nuevo Pedido</a>
+        <a style ="margin-right: 5px;" class="btn btn-danger" href="nuevoPedido.do" target = "iframe_a">Nuevo Pedido</a>
       </li>
     </ul>
     <ul class="navbar-nav mr-auto">
     	<li> 
-    	<form class="form-inline my-2 my-lg-0">
-      		<input class="form-control mr-sm-2" type="search" placeholder="# Pedido" aria-label="# Pedido">
-      		<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Busca un pedido</button>
+    	<form class="form-inline my-2 my-lg-0" id = "buscadorPedido" target ="iframe_a">
+      		<input id = "id_ped" name = "id_ped"class="form-control mr-sm-2" type="search" placeholder="# Pedido" aria-label="# Pedido">
+      		<input  class="btn btn-outline-light" type = "submit" value = "Buscar" onclick="valBuscarPedido()" >
 		</form>
     	</li>
     	
@@ -71,9 +73,12 @@
    </ul>
   </div>
 </nav>
-
+<%
+String src =(String)request.getAttribute("src");
+pageContext.setAttribute("src",src);
+%>
 <div style = "height: 590px;">
-	<iframe height="100%" width="100%" name="iframe_a">
+	<iframe height="100%" width="100%" name="iframe_a" src= "home.do">
 	
 	
 	</iframe>

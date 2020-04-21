@@ -6,7 +6,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DataBaseHelper <T> {
@@ -54,16 +58,19 @@ public class DataBaseHelper <T> {
 		List<T> listaDeObjetos=new ArrayList<T>();
 		try 
 		{
+
 			Class.forName(DRIVER);
 			conexion = DriverManager.getConnection(URL, USUARIO, CLAVE);
 			sentencia = conexion.createStatement();
 			filas = sentencia.executeQuery(consultaSQL);
 			while (filas.next()) 
 			{
+
 				T objeto=(T) Class.forName(clase.getName()).newInstance();
 				Method[] metodos=objeto.getClass().getDeclaredMethods();
 				for (int i=0;i<metodos.length;i++) 
 				{
+					
 					if (metodos[i].getName().startsWith("set") ) 
 					{
 
@@ -71,8 +78,23 @@ public class DataBaseHelper <T> {
 						{
 							metodos[i].invoke(objeto,filas.getInt(metodos[i].getName().substring(3)));
 						}
+						else if(metodos[i].getName().equals("setTel_cl"))
+						{
+							metodos[i].invoke(objeto,filas.getString(metodos[i].getName().substring(3)));
+
+						}
+						else if(isFloat(filas.getString(metodos[i].getName().substring(3))))
+						{	
+							metodos[i].invoke(objeto,filas.getFloat(metodos[i].getName().substring(3)));
+						}
+						else if(isDate(filas.getString(metodos[i].getName().substring(3))))
+						{
+
+							metodos[i].invoke(objeto,filas.getDate(metodos[i].getName().substring(3)));
+						}
 						else
 						{
+
 							metodos[i].invoke(objeto,filas.getString(metodos[i].getName().substring(3)));
 
 						}
@@ -99,9 +121,32 @@ public class DataBaseHelper <T> {
 	}
 	private static boolean isNumeric(String cadena){
 		try {
+			
 			Integer.parseInt(cadena);
 			return true;
 		} catch (NumberFormatException nfe){
+			return false;
+		}
+	}
+	private static boolean isFloat(String cadena){
+		try {
+			Float.parseFloat(cadena);
+
+			return true;
+		} catch (NumberFormatException nfe){
+			return false;
+		}
+	}
+	private static boolean isDate(String cadena)
+	{
+		try 
+		{
+			DateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			inputDateFormat.parse(cadena);
+			
+			return true;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			return false;
 		}
 	}

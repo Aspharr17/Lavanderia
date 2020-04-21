@@ -67,6 +67,13 @@ public class Servicio {
 		helper.modificarRegistro(consultaSQL);
 		return buscarTodos();
 	}
+	public Servicio buscar(String info_ser)
+	{
+		String consultaSQL = "SELECT * FROM servicios WHERE nom_ser = '"+info_ser+"'";
+		DataBaseHelper<Servicio> helper = new DataBaseHelper<Servicio>();
+		List<Servicio> servicio = helper.seleccionarRegistros(consultaSQL,Servicio.class);
+		return servicio.get(0);
+	}
 	public List<Servicio> buscarTodos()
 	{
 		String consultaSQL = "SELECT id_ser,nom_ser,cost_ser,med_ser from servicios";
@@ -80,6 +87,14 @@ public class Servicio {
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		System.out.println(consultaSQL);
 		//helper.modificarRegistro(consultaSQL);
+		return buscarTodos();
+	}
+	public List<Servicio> editar()
+	{
+		String consultaSQL = "UPDATE servicios SET nom_ser='"+nom_ser+"' , cost_ser = '"+cost_ser+"', med_ser = '"+med_ser+
+							"' WHERE id_ser= "+id_ser;
+		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
+		helper.modificarRegistro(consultaSQL);
 		return buscarTodos();
 	}
 

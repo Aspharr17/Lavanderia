@@ -33,7 +33,7 @@ pageContext.setAttribute("tel_cl",tel_cl);
 			 <form id = "formularioEditarCliente" >
 			 	<div classs="form-group">
 				 <label> Id </label>
-				 <input type="text" id = "id_cl" name="id_cl" class="form-control"  value= "${id_cl}" >
+				 <input type="text" id = "id_cl" name="id_cl" class="form-control"  value= "${id_cl}" readonly >
 				 </div>
 				 <div classs="form-group">
 				 <label> Nombre </label>

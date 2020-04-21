@@ -11,6 +11,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
  crossorigin="anonymous">
  <link rel="stylesheet" type="text/css" href="styles/styles.css"/>
+ <script src ="js/val.js" type ="text/javascript"></script>
  
  
 </head>
@@ -34,16 +35,13 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       <li class="nav-item dropdown">
 
       </li>
-      <li class="nav-item">
-        <a style ="margin-right: 5px;" class="btn btn-outline-light" href="#">Disabled</a>
-      </li>
     </ul>
     <ul class="navbar-nav mr-auto">
     	<li> 
-    		<form class="form-inline my-2 my-lg-0" action ="buscarPedidoCliente.do">
-      			<input class="form-control mr-sm-2" type="search" placeholder="# Pedido" aria-label="# Pedido">
-      			<input class="form-control mr-sm-2" type="search" placeholder="Apellido" aria-label="Apellido">
-      		<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Busca tu pedido</button>
+    		<form class="form-inline my-2 my-lg-0" id = "buscadorPedidoPub" target="iframe_b">
+      		<input id = "id_ped" name ="id_ped" class="form-control mr-sm-2" type="search" placeholder="# Pedido" aria-label="# Pedido">
+      		<input id = "ape_cl" name = "ape_cl" class="form-control mr-sm-2" type="search" placeholder="Apellido" aria-label="Apellido">
+      		<input  class="btn btn-outline-light" type = "submit"  value = "Buscar" onclick="valBuscarPedidoPub()" >
 		    </form>
     </li>
     </ul>

@@ -52,12 +52,13 @@ public class Cliente {
 	}
 	
 	
-	public void registrar()
+	public List<Cliente> registrar()
 	{
 		String consultaSQL = "INSERT INTO clientes(nom_cl,ape_cl,tel_cl) VALUES";
 		consultaSQL +="('"+nom_cl+"', '"+ape_cl+"', '"+tel_cl+"' )";
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		helper.modificarRegistro(consultaSQL);
+		return buscarTodos();
 	}
 	public List<Cliente> buscarTodos()
 	{
@@ -74,11 +75,12 @@ public class Cliente {
 		List<Cliente> cliente = helper.seleccionarRegistros(consultaSQL,Cliente.class);
 		return cliente;
 	}
-	public void eliminar()
+	public List<Cliente> eliminar()
 	{
 		String consultaSQL = "DELETE FROM clientes WHERE id_cl = "+id_cl;
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		helper.modificarRegistro(consultaSQL);
+		return buscarTodos();
 	}
 	public List<Cliente> editar()
 	{
@@ -87,6 +89,15 @@ public class Cliente {
 		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
 		helper.modificarRegistro(consultaSQL);
 		return buscarTodos();
+	}
+
+	public Cliente buscarPorId(int id_cl) {
+		// TODO Auto-generated method stub
+		String consultaSQL = "SELECT * FROM clientes WHERE id_cl = '"+id_cl+"'";
+		DataBaseHelper<Cliente> helper = new DataBaseHelper<Cliente>();
+		List<Cliente> cliente = helper.seleccionarRegistros(consultaSQL,Cliente.class);
+		return cliente.get(0);
+		
 	}
 	
 }

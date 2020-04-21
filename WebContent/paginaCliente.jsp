@@ -21,7 +21,7 @@
 		<div class="card col-sm-4" >
 			<div class="card-body"  name = "Buscar" >
 			<h5 class = "card-body text-center" >Buscar Cliente</h5>
-			 <form id = "formularioBuscarCliente" >
+			 <form id = "formularioBuscarCliente" action="buscarCliente.do">
 				 <label> Nombre </label>
 				 <input type="text" id = "info_cl" name="info_cl" class="form-control">				 
 				 <input type="submit"  class="btn btn-info" onclick="validacionBuscarCliente()"/>
